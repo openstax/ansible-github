@@ -1,0 +1,14 @@
+---
+- name: clone repository source
+  git:
+    repo: "{{ gh_repo }}"
+    dest: "{{ gh_dest_dir }}"
+    force: "yes"
+    update: "yes"
+    clone: "yes"
+    version: "{{ gh_repo_version | default(omit) }}"
+    key_file: "{{ temp_priv_key.dest if temp_priv_key is defined else omit }}"
+    accept_hostkey: "{{ true if temp_priv_key is defined else omit }}"
+  notify:
+    - fix permissions
+    - remove key

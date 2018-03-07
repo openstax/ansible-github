@@ -1,0 +1,15 @@
+---
+- include_tasks: deps.yml
+  tags:
+    - gh-deps
+    - gh-config
+
+- include_tasks: keys.yml
+  when: gh_copy_keys
+  tags:
+    - gh-config
+    - gh-keys
+
+- include_tasks: clone.yml
+  tags:
+    - gh-clone

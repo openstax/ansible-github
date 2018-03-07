@@ -1,0 +1,16 @@
+---
+- name: fix permissions
+  file:
+    path: "{{ gh_dest_dir }}"
+    owner: "{{ gh_dest_dir_user }}"
+    group: "{{ gh_dest_dir_group }}"
+    state: directory
+    recurse: "yes"
+  listen: fix permissions
+
+- name: remove private key from tmp
+  file:
+    path: "{{ temp_key }}"
+    state: absent
+  listen: remove key
+  when: temp_key is defined

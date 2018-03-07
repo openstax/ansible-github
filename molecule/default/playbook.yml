@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    gh_repo: https://github.com/openstax/tutor-js.git
+    gh_dest_dir: /var/www
+    gh_dest_dir_user: www-data
+    gh_dest_dir_group: www-data
+  roles:
+    - role: ansible-github

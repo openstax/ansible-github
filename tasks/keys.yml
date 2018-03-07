@@ -1,0 +1,15 @@
+---
+- name: create temporary directory for github keys
+  tempfile:
+    state: directory
+    prefix: "github"
+  register: temp_dir
+  changed_when: temp_dir is not defined
+
+- name: copy over private key used to auth with github
+  copy:
+    src: "{{ gh_priv_key_path }}"
+    dest: "{{ temp_dir.path }}/id_rsa"
+    mode: 0600
+  register: temp_priv_key
+  changed_when: temp_priv_key is not defined

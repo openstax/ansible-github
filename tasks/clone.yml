@@ -12,3 +12,6 @@
   notify:
     - fix permissions
     - remove key
+
+# Ensure handlers are run before attempting anything else
+- meta: flush_handlers
